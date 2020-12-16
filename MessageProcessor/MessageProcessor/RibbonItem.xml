@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>      
+      <tab idMso="TabMail">
+        <group id="dududucjhshshs"
+               label="Message Processor">
+          <button id="attachedMessage" label="Add Message"  description="It will add message in Queue" screentip="It will add message in Queue" supertip="It will add message in Queue"  onAction="On_ActionAddMessages" 
+                   getImage="GetImageIcon" size="large"/>
+
+        </group>
+      </tab>
+      <tab idMso="TabNewMailMessage">
+        <group id="MydddGroospspso"
+                 label="Message Processor">
+          <button id="uploadMessage" label="Pull Message" screentip="It will insert random message in email" description ="It will insert random message in email" supertip="It will insert random message in email" onAction="On_Action_PullMessage"  
+                  getImage="GetImageIcon" size="large"/>
+
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
+

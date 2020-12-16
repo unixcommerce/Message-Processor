@@ -1,0 +1,2 @@
+D:\Projects\Kirk Brown\MessageProcessor\MessageProcessorSetup\bin\Release\MessageProcessorSetup.msi
+D:\Projects\Kirk Brown\MessageProcessor\MessageProcessorSetup\bin\Release\MessageProcessorSetup.wixpdb

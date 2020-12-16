@@ -1,0 +1,6 @@
+obj\Release\Product.wixobj
+D:\Projects\Kirk Brown\MessageProcessor\MessageProcessorSetup\bin\Release\MessageProcessorSetup.msi
+D:\Projects\Kirk Brown\MessageProcessor\MessageProcessorSetup\bin\Release\MessageProcessorSetup.wixpdb
+obj\Release\MessageProcessorSetup.wixproj.BindContentsFileListnull.txt
+obj\Release\MessageProcessorSetup.wixproj.BindOutputsFileListnull.txt
+obj\Release\MessageProcessorSetup.wixproj.BindBuiltOutputsFileListnull.txt

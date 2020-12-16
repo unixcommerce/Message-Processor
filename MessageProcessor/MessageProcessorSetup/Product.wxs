@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="software Composer" Language="1033" Version="1.0.0.0" Manufacturer="Unix Commerce" UpgradeCode="cee0c7f8-d76d-4383-9fe8-ee56a40f60c6">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." AllowSameVersionUpgrades="yes" />
+    <PropertyRef Id="NETFRAMEWORK40FULL"/>
+    <Condition Message="This application requires .NET Framework 4.0.Please download and install from http://www.microsoft.com/en-us/download/details.aspx?id=17718">
+      <![CDATA[Installed OR NETFRAMEWORK40FULL]]>
+    </Condition>
+    <Media Id="1" Cabinet="MessageProcessor.cab" EmbedCab="yes"/>    
+    <Feature Id="ProductFeature" Title="MessageProcessor Setup" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="Registry_FriendlyName" />
+      <ComponentRef Id="Registry_Description" />
+      <ComponentRef Id="Registry_Manifest" />
+      <ComponentRef Id="Registry_LoadBehavior" />
+    </Feature>    
+    <UIRef Id="WixUI_Mondo"></UIRef>
+    <UIRef Id="WixUI_ErrorProgressText" />
+    <WixVariable Id="WixUILicenseRtf" Value="EULA.rtf" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALTEXT" Value="Thank you for installing MessageProcessor Add-In." />
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="MessageProcessor" />
+        <Component Id="Registry_FriendlyName">
+          <RegistryValue Id="RegKey_FriendlyName" Root="HKCU"
+                         Key="Software\Microsoft\Office\Outlook\Addins\MessageProcessor"
+                         Name="FriendlyName"
+                         Value="MessageProcessor"
+                         Type="string" KeyPath="yes" />
+        </Component>
+        <Component Id="Registry_Description">
+          <RegistryValue Id="RegKey_Description" Root="HKCU"
+                         Key="Software\Microsoft\Office\Outlook\Addins\MessageProcessor"
+                         Name="Description"
+                         Value="MessageProcessor Plugin for Outlook"
+                         Type="string" KeyPath="yes" />
+        </Component>
+        <Component Id="Registry_Manifest">
+          <RegistryValue Id="RegKey_Manifest" Root="HKCU"
+                         Key="Software\Microsoft\Office\Outlook\Addins\MessageProcessor"
+                         Name="Manifest" Value="[INSTALLFOLDER]MessageProcessor.vsto|vstolocal"
+                         Type="string" KeyPath="yes" />
+        </Component>
+        <Component Id="Registry_LoadBehavior">
+          <RegistryValue Id="RegKey_LoadBehavior" Root="HKCU"
+                         Key="Software\Microsoft\Office\Outlook\Addins\MessageProcessor"
+                         Name="LoadBehavior" Value="3"
+                         Type="integer" KeyPath="yes" />
+        </Component>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="MessageProcessor_vsto_Component">
+        <File Id="MessageProcessor_vsto" KeyPath="yes"
+              Name="MessageProcessor.vsto" Source="..\MessageProcessor\bin\Release\MessageProcessor.vsto"></File>
+      </Component>
+
+      <Component Id="MessageProcessor_dll_manifest_Component">
+        <File Id="MessageProcessor.dll.manifest" KeyPath="yes"
+              Name="MessageProcessor.dll.manifest" Source="..\MessageProcessor\bin\Release\MessageProcessor.dll.manifest"></File>
+      </Component>
+
+      <Component Id="MessageProcessor_dll_Component" >
+        <File Id="MessageProcessor_dll" KeyPath="yes"
+              Name="MessageProcessor.dll" Source="..\MessageProcessor\bin\Release\MessageProcessor.dll" />
+      </Component>
+      
+      <Component Id="Words_dll_Component" >
+        <File Id="Wordsr_dll" KeyPath="yes"
+              Name="Microsoft.Office.Interop.Word.dll" Source="..\MessageProcessor\bin\Release\Microsoft.Office.Interop.Word.dll" />
+      </Component>
+
+      <Component Id="MSOfficeToolsCommon_dll_Component">
+        <File Id="MSOfficeToolsCommon_dll" KeyPath="yes"
+              Name="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" Source="..\MessageProcessor\bin\Release\Microsoft.Office.Tools.Common.v4.0.Utilities.dll"></File>
+      </Component>
+
+      <Component Id="MSOfficeToolsOutlook_dll_Component">
+        <File Id="MSOfficeToolsOutlook_dll" KeyPath="yes"
+              Name="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" Source="..\MessageProcessor\bin\Release\Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll"></File>
+      </Component>
+
+      <Component Id="Microsoft.VisualStudio_Tools_Applications_Runtime_dll_component">
+        <File Id="Microsoft.VisualStudio.Tools_Applications_Runtime.dll" KeyPath="yes"
+              Name="Microsoft.VisualStudio.Tools.Applications.Runtime.dll" Source="..\MessageProcessor\bin\Release\Microsoft.VisualStudio.Tools.Applications.Runtime.dll">
+        </File>
+      </Component>      
+    </ComponentGroup>
+  </Fragment>
+</Wix>
+
+
